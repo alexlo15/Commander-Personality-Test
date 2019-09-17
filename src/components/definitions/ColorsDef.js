@@ -11,7 +11,7 @@ const Wrapper = styled.div`
   justify-content: center;
 `
 
-const BrownDef = ({ title, content, onBackClick }) => {
+const BlackDef = ({ title, content, onBackClick }) => {
   return (
     <Wrapper className="container">
       <CardDef>
@@ -67,4 +67,18 @@ const RedDef = ({ title, content, onBackClick }) => {
   )
 }
 
-export { BrownDef, GreenDef, BlueDef, RedDef }
+const WhiteDef = ({ title, content, onBackClick }) => {
+  return (
+    <Wrapper className="container">
+      <CardDef>
+        <h1>{title}</h1>
+        <div className="close" onClick={onBackClick}>
+          <i className="fa fa-times" aria-hidden="true" />
+        </div>
+        <p className="text-justify">{content}</p>
+      </CardDef>
+    </Wrapper>
+  )
+}
+
+export { BlackDef, GreenDef, BlueDef, RedDef, WhiteDef }

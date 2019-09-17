@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { BrownDef, GreenDef, BlueDef, RedDef } from '../definitions/ColorsDef'
+import { BlackDef, WhiteDef, GreenDef, BlueDef, RedDef } from '../definitions/ColorsDef'
 import { Wrapper } from '../utils/ResultWrapper'
 import { NextBtn } from '../utils/Buttons'
 
@@ -8,12 +8,14 @@ class Colors extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      showBrownDef: false,
+      showBlackDef: false,
+      showWhiteDef: false,
       showGreenDef: false,
       showBlueDef: false,
       showRedDef: false
     }
-    this.onBrownDefClick = this.onBrownDefClick.bind(this)
+    this.onBlackDefClick = this.onBlackDefClick.bind(this)
+    this.onWhiteDefClick = this.onWhiteDefClick.bind(this)
     this.onGreenDefClick = this.onGreenDefClick.bind(this)
     this.onBlueDefClick = this.onBlueDefClick.bind(this)
     this.onRedDefClick = this.onRedDefClick.bind(this)
@@ -30,15 +32,28 @@ class Colors extends Component {
     )
   }
 
-  renderBrownDef() {
+  renderBlackDef() {
     return (
-      <BrownDef
-        title={'Brown Type Definition'}
+      <BlackDef
+        title={'Black'}
         content={`You are a Builder. You enjoy leading, creating and working hard.
                   You are a traditional person with respect for authority.
                   Your strengths are your diligence, directness and practicality.
                   Your weaknesses are your lack of tact, patience, and difficulty with abstractions.`}
-        onBackClick={this.onBrownDefClick}
+        onBackClick={this.onBlackDefClick}
+      />
+    )
+  }
+
+  renderWhiteDef() {
+    return (
+      <WhiteDef
+        title={'White'}
+        content={`You are a Builder. You enjoy leading, creating and working hard.
+                  You are a traditional person with respect for authority.
+                  Your strengths are your diligence, directness and practicality.
+                  Your weaknesses are your lack of tact, patience, and difficulty with abstractions.`}
+        onBackClick={this.onWhiteDefClick}
       />
     )
   }
@@ -46,7 +61,7 @@ class Colors extends Component {
   renderGreenDef() {
     return (
       <GreenDef
-        title={'Green Type Definition'}
+        title={'Green'}
         content={`You are a Planner. You enjoy dreaming, plotting and innovating.
                   You tend to spend a lot of time thinking.
                   Your strengths are your vision, objectiveness and attention to detail.
@@ -59,7 +74,7 @@ class Colors extends Component {
   renderBlueDef() {
     return (
       <BlueDef
-        title={'Blue Type Definition'}
+        title={'Blue'}
         content={`You are a Relater. You enjoy chatting, romance and spending time with others.
                 You are an empathetic person who tends to put the needs of others above your own.
                 Your strengths are your sympathy, openness and awareness of your own emotions.
@@ -72,7 +87,7 @@ class Colors extends Component {
   renderRedDef() {
     return (
       <RedDef
-        title={'Red Type Definition'}
+        title={'Red'}
         content={`You are an Adventurer. You enjoy action, excitement and drama.
                   You easily accept change and are spontaneous.
                   Your strengths are your tenacity, fearlessness and adaptability.
@@ -83,18 +98,21 @@ class Colors extends Component {
   }
 
   render() {
-    let showBrownDef = this.state.showBrownDef
+    let showBlackDef = this.state.showBlackDef
     let showGreenDef = this.state.showGreenDef
     let showBlueDef = this.state.showBlueDef
     let showRedDef = this.state.showRedDef
-    if (showBrownDef) {
-      return this.renderBrownDef()
+    let showWhiteDef = this.state.showWhiteDef
+    if (showBlackDef) {
+      return this.renderBlackDef()
     } else if (showGreenDef) {
       return this.renderGreenDef()
     } else if (showBlueDef) {
       return this.renderBlueDef()
     } else if (showRedDef) {
       return this.renderRedDef()
+    }else if (showWhiteDef) {
+      return this.renderWhiteDef()
     }
     return (
       <Wrapper className="jumbotron">
@@ -104,8 +122,8 @@ class Colors extends Component {
         <hr className="my-5" />
         <p className="lead">What does this result mean?</p>
         <ul className="list-group">
-          <li className="list-group-item" onClick={this.onBrownDefClick}>
-            Brown
+          <li className="list-group-item" onClick={this.onBlackDefClick}>
+            Black
             <div className="icon">
               <i className="fa fa-arrow-right" />
             </div>
@@ -128,15 +146,21 @@ class Colors extends Component {
               <i className="fa fa-arrow-right" />
             </div>
           </li>
+          <li className="list-group-item" onClick={this.onWhiteDefClick}>
+            White
+            <div className="icon">
+              <i className="fa fa-arrow-right" />
+            </div>
+          </li>
         </ul>
         {this.renderNextBtn()}
       </Wrapper>
     )
   }
 
-  onBrownDefClick() {
-    let showBrownDef = this.state.showBrownDef
-    this.setState({ showBrownDef: !showBrownDef })
+  onBlackDefClick() {
+    let showBlackDef = this.state.showBlackDef
+    this.setState({ showBlackDef: !showBlackDef })
   }
 
   onGreenDefClick() {
@@ -153,13 +177,19 @@ class Colors extends Component {
     let showRedDef = this.state.showRedDef
     this.setState({ showRedDef: !showRedDef })
   }
+
+  onWhiteDefClick() {
+    let showWhiteDef = this.state.showWhiteDef
+    this.setState({ showWhiteDef: !showWhiteDef })
+  }
 }
 
 Colors.propTypes = {
   resultColors: PropTypes.string.isRequired,
-  resultBrown: PropTypes.string.isRequired,
+  resultBlack: PropTypes.string.isRequired,
   resultGreen: PropTypes.string.isRequired,
   resultBlue: PropTypes.string.isRequired,
+  resultWhite: PropTypes.string.isRequired,
   resultRed: PropTypes.string.isRequired
 }
 

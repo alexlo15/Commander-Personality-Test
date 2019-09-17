@@ -103,7 +103,9 @@ class Question extends Component {
     if (this.state.questionId < quizQuestions.length) {
       setTimeout(() => this.setNextQuestion(), 800)
     } else {
-      setTimeout(() => this.setResults(this.getColorsResults(), this.getLettersResults(), this.getBriggsResults()), 800)
+      setTimeout(() => this.setResults(this.getColorsResults()
+      // , this.getLettersResults(), this.getBriggsResults()
+      ), 800)
     }
   }
 
@@ -189,8 +191,8 @@ class Question extends Component {
     return (
       <Results
         resultColors={this.state.resultColors}
-        resultLetters={this.state.resultLetters}
-        resultBriggs={this.state.resultBriggs}
+        // resultLetters={this.state.resultLetters}
+        // resultBriggs={this.state.resultBriggs}
       />
     )
   }
@@ -199,8 +201,8 @@ class Question extends Component {
   //                       render this question page
   // ===========================================================================
   render() {
-    let resultBriggs = this.state.resultBriggs
-    if (resultBriggs) {
+    let resultColors = this.state.resultColors
+    if (resultColors) {
       return this.renderResult()
     }
     return (
