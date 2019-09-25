@@ -22,7 +22,7 @@ const Intro = ({ title, _onStartClick }) => {
           <li className="list-group-item">Answer honestly</li>
         </ul>
         <StartBtn onClick={_onStartClick}>
-          <span>Let's Do This!</span>
+          <span>Let's go!</span>
           <div className="icon">
             <i className="fa fa-arrow-right" />
           </div>

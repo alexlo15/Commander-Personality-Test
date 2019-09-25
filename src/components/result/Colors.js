@@ -34,66 +34,81 @@ class Colors extends Component {
 
   renderBlackDef() {
     return (
-      <BlackDef
-        title={'Black'}
-        content={`You are a Builder. You enjoy leading, creating and working hard.
+      <>
+        <BlackDef
+          title={'Black'}
+          content={`You are a Builder. You enjoy leading, creating and working hard.
                   You are a traditional person with respect for authority.
                   Your strengths are your diligence, directness and practicality.
                   Your weaknesses are your lack of tact, patience, and difficulty with abstractions.`}
-        onBackClick={this.onBlackDefClick}
-      />
+          onBackClick={this.onBlackDefClick}
+        />
+        <NextBtn />
+      </>
     )
   }
 
   renderWhiteDef() {
     return (
-      <WhiteDef
-        title={'White'}
-        content={`You are a Builder. You enjoy leading, creating and working hard.
+      <>
+        <WhiteDef
+          title={'White'}
+          content={`You are a Builder. You enjoy leading, creating and working hard.
                   You are a traditional person with respect for authority.
                   Your strengths are your diligence, directness and practicality.
                   Your weaknesses are your lack of tact, patience, and difficulty with abstractions.`}
-        onBackClick={this.onWhiteDefClick}
-      />
+          onBackClick={this.onWhiteDefClick}
+        />
+        <NextBtn />
+      </>
     )
   }
 
   renderGreenDef() {
     return (
-      <GreenDef
-        title={'Green'}
-        content={`You are a Planner. You enjoy dreaming, plotting and innovating.
+      <>
+        <GreenDef
+          title={'Green'}
+          content={`You are a Planner. You enjoy dreaming, plotting and innovating.
                   You tend to spend a lot of time thinking.
                   Your strengths are your vision, objectiveness and attention to detail.
                   Your weaknesses are your difficulty in putting yourself in the current moment and lack of practicality and speed.`}
-        onBackClick={this.onGreenDefClick}
-      />
+          onBackClick={this.onGreenDefClick}
+        />
+        <NextBtn />
+      </>
     )
   }
 
   renderBlueDef() {
     return (
-      <BlueDef
-        title={'Blue'}
-        content={`You are a Relater. You enjoy chatting, romance and spending time with others.
+      <>
+        <BlueDef
+          title={'Blue'}
+          content={`You are a Relater. You enjoy chatting, romance and spending time with others.
                 You are an empathetic person who tends to put the needs of others above your own.
                 Your strengths are your sympathy, openness and awareness of your own emotions.
                 Your weaknesses are your subjectivity, pliability and manipulability.`}
-        onBackClick={this.onBlueDefClick}
-      />
+          onBackClick={this.onBlueDefClick}
+        />
+        <NextBtn />
+      </>
     )
   }
 
   renderRedDef() {
     return (
-      <RedDef
-        title={'Red'}
-        content={`You are an Adventurer. You enjoy action, excitement and drama.
+      <>
+        <RedDef
+          title={'Red'}
+          content={`You are an Adventurer. You enjoy action, excitement and drama.
                   You easily accept change and are spontaneous.
                   Your strengths are your tenacity, fearlessness and adaptability.
                   Your weaknesses are your carelessness and lack of focus and diligence.`}
-        onBackClick={this.onRedDefClick}
-      />
+          onBackClick={this.onRedDefClick}
+        />
+        <NextBtn />
+      </>
     )
   }
 
@@ -111,7 +126,7 @@ class Colors extends Component {
       return this.renderBlueDef()
     } else if (showRedDef) {
       return this.renderRedDef()
-    }else if (showWhiteDef) {
+    } else if (showWhiteDef) {
       return this.renderWhiteDef()
     }
     return (

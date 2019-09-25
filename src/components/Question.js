@@ -19,11 +19,11 @@ class Question extends Component {
       answer: '',
       answersCount: {
         Colors: {
-          Green: 10,
-          White: 10,
-          Blue: 10,
-          Red: 10,
-          Black: 10
+          Green: 0,
+          White: 0,
+          Blue: 0,
+          Red: 0,
+          Black: 0
         }
         // ,
         // Letters: {
@@ -65,16 +65,21 @@ class Question extends Component {
     let applyAnswer = answer => {
       const answer_array = answer.split(',')
       // let briggsAnswer = answer_array[0]
-      let colorsAnswer = answer_array[1]
+      let colorsAnswer = answer_array[0]
+      console.log(colorsAnswer)
       // let lettersAnswer = answer_array[2]
-      if (answer_array.length === 3) {
+      if (colorsAnswer = "White") {
         // answersCount['Briggs'][briggsAnswer] += 1
-        answersCount['Colors'][colorsAnswer] += 1
+        answersCount.Colors.White += 1
         // answersCount['Letters'][lettersAnswer] += 1
-      } else if (answer_array.length === 4) {
-        // answersCount['Briggs'][briggsAnswer] -= 1
-        answersCount['Colors'][colorsAnswer] -= 1
-        // answersCount['Letters'][lettersAnswer] -= 1
+      } else if (colorsAnswer = "Red") {
+        answersCount.Colors.Red += 1
+      } else if (colorsAnswer = "Blue") {
+        answersCount.Colors.Blue += 1
+      } else if (colorsAnswer = "Green") {
+        answersCount.Colors.Green += 1
+      } else if (colorsAnswer = "Black") {
+        answersCount.Colors.Black += 1
       }
       return answersCount
     }
@@ -101,7 +106,7 @@ class Question extends Component {
   handleAnswerSelected(event) {
     this.setUserAnswer(event.currentTarget.value)
     if (this.state.questionId < quizQuestions.length) {
-      setTimeout(() => this.setNextQuestion(), 800)
+      setTimeout(() => this.setNextQuestion(), 500)
     } else {
       setTimeout(() => this.setResults(this.getColorsResults()
       // , this.getLettersResults(), this.getBriggsResults()
@@ -136,9 +141,17 @@ class Question extends Component {
   getColorsResults() {
     const answersCount = this.state.answersCount
     const colorsAnswer = answersCount['Colors']
+    const redAnswer = answersCount.Colors.Red
+    const whiteAnswer = answersCount.Colors.White
+    const blueAnswer = answersCount.Colors.Blue
+    const blackAnswer = answersCount.Colors.Black
+    const greenAnswer = answersCount.Colors.Green
     const answersCountKeysColors = Object.keys(colorsAnswer)
+    console.log(answersCountKeysColors)
     const answersCountValuesColors = answersCountKeysColors.map(key => colorsAnswer[key])
+    console.log(answersCountValuesColors)
     const maxAnswerCountColors = Math.max.apply(null, answersCountValuesColors)
+    console.log(maxAnswerCountColors)
     return answersCountKeysColors.filter(key => colorsAnswer[key] === maxAnswerCountColors)
   }
 
