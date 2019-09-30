@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import Colors from '../result/Colors'
-import Letters from '../result/Letters'
-import Briggs from '../result/Briggs'
-
+  
 class Results extends Component {
   constructor(props) {
     super(props)
@@ -15,7 +13,7 @@ class Results extends Component {
   }
 
   renderResultColors() {
-    return <Colors resultColors={this.props.resultColors} _onNextClick={this._onNextClick} />
+    return <Colors resultColor1={this.props.resultColor1} _onNextClick={this._onNextClick} />
   }
 
   // renderResultLetters() {
@@ -32,7 +30,7 @@ class Results extends Component {
     // let showBriggsResult = this.state.showBriggsResult
     if (showColorsResult) {
       return this.renderResultColors()
-    } 
+    }
     // else if (showLettersResult) {
     //   return this.renderResultLetters()
     // } else if (showBriggsResult) {
@@ -52,8 +50,14 @@ class Results extends Component {
           // showLettersResult: !showLettersResult // -> true
         })
       }, 800)
-    } 
-    // else if (showLettersResult) {
+    } else {
+      return(
+        <h1>Thanks for playing!</h1>
+      )
+
+    }
+
+    //  if (showLettersResult) {
     //   setTimeout(() => {
     //     this.setState({
     //       showLettersResult: !showLettersResult, // false

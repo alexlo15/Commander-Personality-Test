@@ -25,27 +25,11 @@ class Question extends Component {
           Red: 0,
           Black: 0
         }
-        // ,
-        // Letters: {
-        //   A: 10,
-        //   B: 10,
-        //   C: 10,
-        //   D: 10
-        // },
-        // Briggs: {
-        //   E: 5,
-        //   I: 5,
-        //   S: 5,
-        //   N: 5,
-        //   T: 5,
-        //   F: 5,
-        //   J: 5,
-        //   P: 5
-        // }
+    
       },
       // resultBriggs: '',
-      resultColors: '',
-      // resultLetters: ''
+      resultColor1: '',
+      resultColor2: ''
     }
     this.handleAnswerSelected = this.handleAnswerSelected.bind(this)
   }
@@ -68,17 +52,17 @@ class Question extends Component {
       let colorsAnswer = answer_array[0]
       console.log(colorsAnswer)
       // let lettersAnswer = answer_array[2]
-      if (colorsAnswer = "White") {
+      if (colorsAnswer === "White") {
         // answersCount['Briggs'][briggsAnswer] += 1
         answersCount.Colors.White += 1
         // answersCount['Letters'][lettersAnswer] += 1
-      } else if (colorsAnswer = "Red") {
+      } else if (colorsAnswer === "Red") {
         answersCount.Colors.Red += 1
-      } else if (colorsAnswer = "Blue") {
+      } else if (colorsAnswer === "Blue") {
         answersCount.Colors.Blue += 1
-      } else if (colorsAnswer = "Green") {
+      } else if (colorsAnswer === "Green") {
         answersCount.Colors.Green += 1
-      } else if (colorsAnswer = "Black") {
+      } else if (colorsAnswer === "Black") {
         answersCount.Colors.Black += 1
       }
       return answersCount
@@ -106,73 +90,77 @@ class Question extends Component {
   handleAnswerSelected(event) {
     this.setUserAnswer(event.currentTarget.value)
     if (this.state.questionId < quizQuestions.length) {
-      setTimeout(() => this.setNextQuestion(), 500)
+      setTimeout(() => this.setNextQuestion(), 100)
     } else {
       setTimeout(() => this.setResults(this.getColorsResults()
-      // , this.getLettersResults(), this.getBriggsResults()
+        //, this.getSecondColor() , this.getLettersResults(), this.getBriggsResults()
       ), 800)
     }
   }
 
-  // ===========================================================================
-  //                        get results
-  // ===========================================================================
-  // getBriggsResults() {
-  //   const answerCount = this.state.answersCount
-  //   const briggsAnswer = answerCount['Briggs']
-  //   const answersCountKeysBriggs = Object.keys(briggsAnswer)
-  //   const answersCountValuesBriggs = answersCountKeysBriggs.map(key => briggsAnswer[key])
-  //   let briggsType = ''
-  //   if (briggsAnswer.E >= briggsAnswer.I) {
-  //     briggsType += 'E'
-  //   } else briggsType += 'I'
-  //   if (briggsAnswer.S >= briggsAnswer.N) {
-  //     briggsType += 'S'
-  //   } else briggsType += 'N'
-  //   if (briggsAnswer.T >= briggsAnswer.F) {
-  //     briggsType += 'T'
-  //   } else briggsType += 'F'
-  //   if (briggsAnswer.J >= briggsAnswer.P) {
-  //     briggsType += 'J'
-  //   } else briggsType += 'P'
-  //   return briggsType
-  // }
+
 
   getColorsResults() {
     const answersCount = this.state.answersCount
     const colorsAnswer = answersCount['Colors']
-    const redAnswer = answersCount.Colors.Red
-    const whiteAnswer = answersCount.Colors.White
-    const blueAnswer = answersCount.Colors.Blue
-    const blackAnswer = answersCount.Colors.Black
-    const greenAnswer = answersCount.Colors.Green
+    // const redAnswer = answersCount.Colors.Red
+    // const whiteAnswer = answersCount.Colors.White
+    // const blueAnswer = answersCount.Colors.Blue
+    // const blackAnswer = answersCount.Colors.Black
+    // const greenAnswer = answersCount.Colors.Green
     const answersCountKeysColors = Object.keys(colorsAnswer)
+    // gets the colors keys 
     console.log(answersCountKeysColors)
     const answersCountValuesColors = answersCountKeysColors.map(key => colorsAnswer[key])
+    // this line below is the colors count
     console.log(answersCountValuesColors)
+    // maxanswercountcolors is the # of the highest color
     const maxAnswerCountColors = Math.max.apply(null, answersCountValuesColors)
     console.log(maxAnswerCountColors)
-    return answersCountKeysColors.filter(key => colorsAnswer[key] === maxAnswerCountColors)
+
+
+    const firstColor = answersCountKeysColors.filter(key => colorsAnswer[key] === maxAnswerCountColors)
+    const array2 = answersCountValuesColors.splice(answersCountValuesColors.indexOf(maxAnswerCountColors), 2); // remove max from the array
+    const max2 = Math.max.apply(null, answersCountValuesColors)
+    const secondColor = answersCountKeysColors.filter(key => colorsAnswer[key] === max2);
+
+    console.log(firstColor)
+    console.log(array2)
+    console.log(max2)
+    console.log(secondColor)
+
+
+    // return filters through the key colors and returns the color who's key(name)
+    // is the same as the max number count
+    // return answersCountKeysColors.filter(key => colorsAnswer[key] === maxAnswerCountColors)
+    return {firstColor, secondColor}
   }
 
-  // getLettersResults() {
-  //   const answersCount = this.state.answersCount
-  //   const lettersAnswer = answersCount['Letters']
-  //   const answersCountKeysLetters = Object.keys(lettersAnswer)
-  //   const answersCountValuesLetters = answersCountKeysLetters.map(key => lettersAnswer[key])
-  //   const maxAnswerCountLetters = Math.max.apply(null, answersCountValuesLetters)
-  //   return answersCountKeysLetters.filter(key => lettersAnswer[key] === maxAnswerCountLetters)
+  // getSecondColor() {
+  //   const answerCount = this.state.answersCount
+  //   const colorsAnswer = answerCount['Colors']
+  //   const answersCountKeysColors = Object.keys(colorsAnswer)
+  //   const answersCountValuesColors = answersCountKeysColors.map(key => colorsAnswer[key])
+  //   const maxAnswerCountColors = Math.max.apply(null, answersCountValuesColors)
+  //   answersCountValuesColors.splice(answersCountValuesColors.indexOf(maxAnswerCountColors), 1); // remove max from the array
+  //   return answersCountKeysColors.filter(key => colorsAnswer[key] === maxAnswerCountColors)
   // }
 
   // ===========================================================================
   //                        set results
   // ===========================================================================
-  setResults(resultColors
+  setResults(resultColor1, resultColor2
     // , resultLetters, resultBriggs
   ) {
-    if (resultColors.length >= 1) {
-      this.setState({ resultColors: resultColors[0] })
-    }
+    // if (resultColors.length >= 2) {
+      this.setState({ 
+        resultColor1: resultColor1,
+        resultColor2: resultColor2,
+       })
+      //  resultcolor1 is both colors
+      console.log(resultColor1)
+      // console.log(resultColor2)
+    // }
     // if (resultLetters.length >= 1) {
     //   this.setState({ resultLetters: resultLetters[0] })
     // }
@@ -203,9 +191,11 @@ class Question extends Component {
   renderResult() {
     return (
       <Results
-        resultColors={this.state.resultColors}
-        // resultLetters={this.state.resultLetters}
-        // resultBriggs={this.state.resultBriggs}
+        // resultColors={this.state.resultColors}
+        resultColor1={this.state.resultColor1}
+        resultColor2={this.state.resultColor2}
+      // resultLetters={this.state.resultLetters}
+      // resultBriggs={this.state.resultBriggs}
       />
     )
   }
@@ -214,8 +204,9 @@ class Question extends Component {
   //                       render this question page
   // ===========================================================================
   render() {
-    let resultColors = this.state.resultColors
-    if (resultColors) {
+    let resultColor1 = this.state.resultColor1
+    // let resultColor2= this.state.resultColor2
+    if (resultColor1) {
       return this.renderResult()
     }
     return (
